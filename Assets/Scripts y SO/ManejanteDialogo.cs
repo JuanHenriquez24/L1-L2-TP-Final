@@ -9,7 +9,7 @@ public class ManejanteDialogo : MonoBehaviour
     [SerializeField] Text dialogueTxt;
     [SerializeField] string[] NPCDialogue;
     [SerializeField] NPCDialogo NPCDialogueScript;
-    int dialogueIndex = 0;
+    public int dialogueIndex = 0;
 
     // Start is called before the first frame update
     void Start()
