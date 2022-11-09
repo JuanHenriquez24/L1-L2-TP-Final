@@ -22,7 +22,7 @@ public class ManejanteDialogo : MonoBehaviour
     void Update()
     { 
             
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && CanInteract == true && dialogueIndex <= NPCDialogue.Length)
             {
                 Debug.Log("funciona");
                 dialogueTxt.text = NPCDialogue[dialogueIndex];
@@ -48,6 +48,7 @@ public class ManejanteDialogo : MonoBehaviour
         {
             UIElements.SetActive(false);
             dialogueIndex = 0;
+            CanInteract = false;
         }
     }
 
