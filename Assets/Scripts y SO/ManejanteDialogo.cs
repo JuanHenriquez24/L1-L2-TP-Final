@@ -10,6 +10,7 @@ public class ManejanteDialogo : MonoBehaviour
     [SerializeField] string[] NPCDialogue;
     [SerializeField] NPCDialogo NPCDialogueScript;
     public int dialogueIndex = 0;
+    bool CanInteract = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,15 @@ public class ManejanteDialogo : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
+    { 
+            
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Debug.Log("funciona");
+                dialogueTxt.text = NPCDialogue[dialogueIndex];
+                dialogueIndex++;
+            }
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -45,10 +53,10 @@ public class ManejanteDialogo : MonoBehaviour
 
     public void ShowNextDialogue()
     {
-        if (dialogueIndex <= NPCDialogue.Length)
-        {
-            dialogueTxt.text = NPCDialogue[dialogueIndex];
-            dialogueIndex++;
-        }
+        CanInteract = true;
+        //if (dialogueIndex <= NPCDialogue.Length)
+        //{
+        //    dialogueTxt.text = NPCDialogue[dialogueIndex];
+        //}
     }
 }
