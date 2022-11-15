@@ -1,38 +1,76 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerActions : MonoBehaviour
 {
-    public bool doorInRange;
+    private bool doorInRange;
     private GameObject currentDoor;
     private bool bookInRange;
-    private GameObject book;
-    private GameObject bookDoor;
+    [SerializeField] private GameObject book;
+    [SerializeField] private GameObject bookDoor;
     private bool bookDoorOpen;
+    [SerializeField] private GameObject holdBook;
+    public bool hasBook;
+    private bool esqueletoPersigue;
+    private float timer;
+    [SerializeField] private TextMeshProUGUI timerGO;
+    public bool startTimer;
+    [SerializeField] private GameObject perdiste;
+    [SerializeField] private GameObject esqueleto;
+    [SerializeField] private GameObject ganaste;
+
+    private void Start()
+    {
+        holdBook.SetActive(false);
+        timerGO.enabled = false;
+        perdiste.SetActive(false);
+        esqueleto.SetActive(false);
+        ganaste.SetActive(false);
+    }
 
     void Update()
     {
+        timer += Time.deltaTime;
+        timerGO.text = Mathf.RoundToInt(timer) + "s";
 
-        if (doorInRange && Input.GetKeyDown(KeyCode.Q))
+        if(bookDoorOpen && bookInRange && Input.GetKeyDown(KeyCode.Q))
+        {
+            Destroy(book);
+            holdBook.SetActive(true);
+            hasBook = true;
+        }
+        else if (doorInRange && Input.GetKeyDown(KeyCode.Q))
         {
             openDoor();
+        }
+
+        if (startTimer)
+        {
+            timerGO.enabled = true;
+            timer = 0;
+            startTimer = false;
+            esqueleto.SetActive(true);
+            esqueletoPersigue = true;
+        }
+
+        if(timer > 60 && esqueletoPersigue)
+        {
+            ganaste.SetActive(true);
         }
     }
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("colliding");
         if(col.tag == "Puerta")
         {
             doorInRange = true;
             currentDoor = col.gameObject;
-            Debug.Log("enter");
         }
         else if(col.tag == "Libro")
         {
             bookInRange = true;
-            book = col.gameObject;
         }
     }
 
@@ -42,17 +80,24 @@ public class PlayerActions : MonoBehaviour
         {
             doorInRange = false;
             currentDoor = null;
-            Debug.Log("Exit");
         }
         else if (col.tag == "Libro")
         {
             bookInRange = false;
-            book = null;
+        }
+        if(col.tag == "enemigo")
+        {
+
+            perdiste.SetActive(true);
         }
     }
 
     void openDoor()
     {
-            currentDoor.GetComponent<Animator>().SetBool("abrir", !currentDoor.GetComponent<Animator>().GetBool("abrir"));
+        currentDoor.GetComponent<Animator>().SetBool("abrir", !currentDoor.GetComponent<Animator>().GetBool("abrir"));
+        if(currentDoor == bookDoor)
+        {
+            bookDoorOpen = !bookDoorOpen;
+        }
     }
 }

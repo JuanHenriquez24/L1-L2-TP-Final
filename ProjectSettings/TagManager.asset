@@ -8,6 +8,8 @@ TagManager:
   - Silla
   - NPC
   - Puerta
+  - Libro
+  - enemigo
   layers:
   - Default
   - TransparentFX
