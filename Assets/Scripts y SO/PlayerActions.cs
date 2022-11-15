@@ -12,14 +12,14 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject bookDoor;
     private bool bookDoorOpen;
     [SerializeField] private GameObject holdBook;
-    public bool hasBook;
     private bool esqueletoPersigue;
     private float timer;
     [SerializeField] private TextMeshProUGUI timerGO;
-    public bool startTimer;
     [SerializeField] private GameObject perdiste;
     [SerializeField] private GameObject esqueleto;
     [SerializeField] private GameObject ganaste;
+    public bool startTimer;
+    public bool hasBook;
 
     private void Start()
     {
