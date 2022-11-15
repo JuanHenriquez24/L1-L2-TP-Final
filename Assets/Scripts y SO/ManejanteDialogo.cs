@@ -8,9 +8,11 @@ public class ManejanteDialogo : MonoBehaviour
     [SerializeField] GameObject UIElements;
     [SerializeField] Text dialogueTxt;
     [SerializeField] string[] NPCDialogue;
+    [SerializeField] string[] NPCDialogue2;
     [SerializeField] NPCDialogo NPCDialogueScript;
     public int dialogueIndex = 0;
     bool CanInteract = false;
+    public DataJugadorYObjetos dataObjetos;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +24,17 @@ public class ManejanteDialogo : MonoBehaviour
     void Update()
     { 
             
-            if (Input.GetKeyDown(KeyCode.R) && CanInteract == true && dialogueIndex <= NPCDialogue.Length)
-            {
+        if (Input.GetKeyDown(KeyCode.R) && CanInteract == true && dialogueIndex <= NPCDialogue.Length)
+        {
                 Debug.Log("funciona");
                 dialogueTxt.text = NPCDialogue[dialogueIndex];
                 dialogueIndex++;
+            if(dialogueIndex == NPCDialogue.Length && dataObjetos.hasBook == true)
+            {
+                dialogueTxt.text = "Gracias, y suerte";
+                dataObjetos.startTimer = true;
             }
-        
+        }
     }
 
     void OnTriggerEnter(Collider other)

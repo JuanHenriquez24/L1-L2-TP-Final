@@ -18,11 +18,13 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject perdiste;
     [SerializeField] private GameObject esqueleto;
     [SerializeField] private GameObject ganaste;
-    public bool startTimer;
-    public bool hasBook;
+    //public bool startTimer;
+    //public bool hasBook;
+    public DataJugadorYObjetos data;
 
     private void Start()
     {
+        data.hasBook = false;
         holdBook.SetActive(false);
         timerGO.enabled = false;
         perdiste.SetActive(false);
@@ -39,18 +41,18 @@ public class PlayerActions : MonoBehaviour
         {
             Destroy(book);
             holdBook.SetActive(true);
-            hasBook = true;
+            data.hasBook = true;
         }
         else if (doorInRange && Input.GetKeyDown(KeyCode.Q))
         {
             openDoor();
         }
 
-        if (startTimer)
+        if (data.startTimer)
         {
             timerGO.enabled = true;
             timer = 0;
-            startTimer = false;
+            data.startTimer = false;
             esqueleto.SetActive(true);
             esqueletoPersigue = true;
         }

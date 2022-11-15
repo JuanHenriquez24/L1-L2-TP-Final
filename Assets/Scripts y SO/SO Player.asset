@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511b3262a6a2b2044af477957a67628a, type: 3}
-  m_Name: SO Data NPC
+  m_Script: {fileID: 11500000, guid: e5c86520bda0f204982584ea7a5f6457, type: 3}
+  m_Name: SO Player
   m_EditorClassIdentifier: 
-  LineasDialogo:
-  - Buen Dia
-  - Necesito tu ayuda
-  - Perdi mi libro, podrias conseguirlo?
-  - Creo que esta en un cajon
+  hasBook: 1
+  startTimer: 0
