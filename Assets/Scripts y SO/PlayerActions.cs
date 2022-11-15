@@ -21,6 +21,7 @@ public class PlayerActions : MonoBehaviour
     //public bool startTimer;
     //public bool hasBook;
     public DataJugadorYObjetos data;
+    [SerializeField] private GameObject Qsign;
 
     private void Start()
     {
@@ -30,12 +31,22 @@ public class PlayerActions : MonoBehaviour
         perdiste.SetActive(false);
         esqueleto.SetActive(false);
         ganaste.SetActive(false);
+        Qsign.SetActive(false);
     }
 
     void Update()
     {
         timer += Time.deltaTime;
         timerGO.text = Mathf.RoundToInt(timer) + "s";
+
+        if(bookInRange || doorInRange)
+        {
+            Qsign.SetActive(true);
+        }
+        else
+        {
+            Qsign.SetActive(false);
+        }
 
         if(bookDoorOpen && bookInRange && Input.GetKeyDown(KeyCode.Q))
         {
@@ -57,7 +68,7 @@ public class PlayerActions : MonoBehaviour
             esqueletoPersigue = true;
         }
 
-        if(timer > 60 && esqueletoPersigue)
+        if(timer >= 60 && esqueletoPersigue)
         {
             ganaste.SetActive(true);
         }

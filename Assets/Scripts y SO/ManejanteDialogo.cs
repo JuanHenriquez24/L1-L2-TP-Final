@@ -29,10 +29,11 @@ public class ManejanteDialogo : MonoBehaviour
                 Debug.Log("funciona");
                 dialogueTxt.text = NPCDialogue[dialogueIndex];
                 dialogueIndex++;
-            if(dialogueIndex == NPCDialogue.Length && dataObjetos.hasBook == true)
+            if(dataObjetos.hasBook == true)
             {
-                dialogueTxt.text = "Gracias, y suerte";
+                dialogueTxt.text = "Gracias, ahora convocare a un esqueleto para que te ataque, porque te odio. Suerte";
                 dataObjetos.startTimer = true;
+                dataObjetos.hasBook = false;
             }
         }
     }
